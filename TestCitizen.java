@@ -44,4 +44,6 @@ public class TestCitizen {
         citizen.setEmail(name);
         assertThat(citizen.getEmail(), is(name));
     }
+
+    
 }
