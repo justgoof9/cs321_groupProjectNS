@@ -14,33 +14,26 @@ public class TestNonImmigrantWorker {
 
     @Test
     public void testGetSetLastName(){
-        Citizen citizen = new Citizen();
+        NonImmigrantWorker worker = new NonImmigrantWorker();
         String name = "testName";
-        citizen.setLastName(name);
-        assertThat(citizen.getLastName(), is(name));
+        worker.setLastName(name);
+        assertThat(worker.getLastName(), is(name));
     }
 
     @Test
     public void testGetSetDob(){
-        Citizen citizen = new Citizen();
+        NonImmigrantWorker worker = new NonImmigrantWorker();
         String name = "testName";
-        citizen.setDob(name);
-        assertThat(citizen.getDob(), is(name));
+        worker.setDob(name);
+        assertThat(worker.getDob(), is(name));
     }
 
     @Test
-    public void testGetSetSsn(){
-        Citizen citizen = new Citizen();
+    public void testGetSetAnumber(){
+        NonImmigrantWorker worker = new NonImmigrantWorker();
         String name = "testName";
-        citizen.setSsn(name);
-        assertThat(citizen.getSsn(), is(name));
+        worker.setANumber(name);
+        assertThat(worker.getANumber(), is(name));
     }
 
-    @Test
-    public void testGetSetEmail(){
-        Citizen citizen = new Citizen();
-        String name = "testName";
-        citizen.setEmail(name);
-        assertThat(citizen.getEmail(), is(name));
-    }
 }
