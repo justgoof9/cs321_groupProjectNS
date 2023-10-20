@@ -3,8 +3,24 @@ import java.util.UUID;
 public class Application{
     private UUID applicationId;
     private boolean toEmail;
-    Citizen citizenApplicant = new Citizen();
-    NonImmigrantWorker alienApplicant = new NonImmigrantWorker();
+    Citizen citizenApplicant;
+    NonImmigrantWorker alienApplicant;
+
+    public void setAlienApplicant(NonImmigrantWorker alienApplicant) {
+        this.alienApplicant = alienApplicant;
+    }
+
+    public void setCitizenApplicant(Citizen citizenApplicant) {
+        this.citizenApplicant = citizenApplicant;
+    }
+
+    public NonImmigrantWorker getAlienApplicant() {
+        return alienApplicant;
+    }
+
+    public Citizen getCitizenApplicant() {
+        return citizenApplicant;
+    }
 
     public void setUuid(UUID id) {
         this.applicationId = id;
