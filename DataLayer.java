@@ -12,6 +12,25 @@ public class DataLayer {
         this.emails = new LinkedList<>();
         this.immigrantRegistry = new HashMap<>();
     }
+    
+    public HashMap<UUID, Application> getApplications() {
+        return applications;
+    }
+    public void setApplications(HashMap<UUID, Application> applications) {
+        this.applications = applications;
+    }
+    public LinkedList<String> getEmails() {
+        return emails;
+    }
+    public void setEmails(LinkedList<String> emails) {
+        this.emails = emails;
+    }
+    public HashMap<String, NonImmigrantWorker> getImmigrantRegistry() {
+        return immigrantRegistry;
+    }
+    public void setImmigrantRegistry(HashMap<String, NonImmigrantWorker> immigrantRegistry) {
+        this.immigrantRegistry = immigrantRegistry;
+    }
 
     public Application retrieveApplication(UUID id){
         return null;
@@ -22,7 +41,11 @@ public class DataLayer {
     }
 
     public boolean addApplication(Application application){
+        
         return false;
     }
+
+
+
 }
 
