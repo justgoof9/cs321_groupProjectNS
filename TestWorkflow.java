@@ -4,7 +4,6 @@ import static org.hamcrest.MatcherAssert.*;
 import org.junit.Test;
 
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.UUID;
 
 
@@ -33,25 +32,25 @@ public class TestWorkflow {
      * Test the addition of review to the review queue in the workflow class.
      */
     @Test
-    public void testAddReview() {
+    public void testAddRetrieveReview() {
         UUID id = new UUID(0,0);
         Workflow wf = new Workflow();
         LinkedList<UUID> rq = new LinkedList<>();
-        rq.push(id);
+        wf.setReviewQueue(rq);
         wf.addReview(id);
-        assertThat(wf.getReviewQueue(), is(rq));
+        assertThat(wf.retrieveReview(), is(id));
     }
     /**
      * Test the addition of an approval to the approval queue in the Workflow class.
      */
     @Test
-    public void testAddApproval() {
+    public void testAddRetrieveApproval() {
         UUID id = new UUID(0,0);
         Workflow wf = new Workflow();
         LinkedList<UUID> rq = new LinkedList<>();
-        rq.push(id);
+        wf.setApprovalQueue(rq);
         wf.addApproval(id);
-        assertThat(wf.getApprovalQueue(), is(rq));
+        assertThat(wf.retrieveApproval(), is(id));
     }
 
     

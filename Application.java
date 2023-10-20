@@ -1,10 +1,16 @@
 import java.util.UUID;
 
 public class Application{
-    private UUID applicationId;
-    private boolean toEmail;
-    Citizen citizenApplicant;
-    NonImmigrantWorker alienApplicant;
+    private UUID applicationId;                 //application id
+    private boolean toEmail;                    //variable determines if an application has an email to send
+    private Citizen citizenApplicant;           //Citizen associated with application
+    private NonImmigrantWorker alienApplicant;  //nonimmigrant associated with application
+    private String emailMessage;                //email to be sent
+
+    //Getters and setters
+    public void setEmailMessage(String emailMessage) {
+        this.emailMessage = emailMessage;
+    }
 
     public void setAlienApplicant(NonImmigrantWorker alienApplicant) {
         this.alienApplicant = alienApplicant;
@@ -14,6 +20,10 @@ public class Application{
         this.citizenApplicant = citizenApplicant;
     }
 
+    public String getEmailMessage() {
+        return emailMessage;
+    }
+    
     public NonImmigrantWorker getAlienApplicant() {
         return alienApplicant;
     }
@@ -34,7 +44,9 @@ public class Application{
     public boolean getEmail() {
         return toEmail;
     }
+    //end getters and setters
     
+    //set toEmail variable to true
     public boolean toEmail() {
         toEmail = true;
         return toEmail;

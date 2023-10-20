@@ -52,4 +52,11 @@ public class TestApplication {
         assertThat(application.getEmail(), is(true));
     }
 
+    public void testGetSetEmailMessage(){
+        Application application = new Application();
+        String email = "Test Email";
+        application.setEmailMessage(email);
+        assertThat(application.getEmailMessage(), is(email));
+    }
+
 }

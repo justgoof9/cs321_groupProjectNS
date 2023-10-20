@@ -5,6 +5,7 @@ public class Citizen {
     private String ssn;
     private String email;
 
+    //getters and setters
     public void setDob(String dob) {
         this.dob = dob;
     }

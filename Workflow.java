@@ -1,15 +1,15 @@
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.UUID;
 
 public class Workflow {
-    LinkedList<UUID> reviewQueue;
-    LinkedList<UUID> approvalQueue;
+    LinkedList<UUID> reviewQueue;   //queue of ids to review
+    LinkedList<UUID> approvalQueue; //queue of ids to approve
     
-    public Queue<UUID> getApprovalQueue() {
+    //getters and setters
+    public LinkedList<UUID> getApprovalQueue() {
         return approvalQueue;
     }
-    public Queue<UUID> getReviewQueue() {
+    public LinkedList<UUID> getReviewQueue() {
         return reviewQueue;
     }
     public void setApprovalQueue(LinkedList<UUID> approvalQueue) {
@@ -18,12 +18,25 @@ public class Workflow {
     public void setReviewQueue(LinkedList<UUID> reviewQueue) {
         this.reviewQueue = reviewQueue;
     }
+    //end getters and setters
 
+    //add id to tail of review queue
     public void addReview(UUID id){
-        reviewQueue.push(id);
+        reviewQueue.addLast(id);
     }
 
+    //add id to tail of approval queue
     public void addApproval(UUID id){
-        approvalQueue.push(id);
+        approvalQueue.addLast(id);
+    }
+
+    //retrieve application from head of approval queue
+    public UUID retrieveApproval(){
+        return approvalQueue.poll();
+    }
+
+    //retireve application from head of review queueu
+    public UUID retrieveReview(){
+        return reviewQueue.poll();
     }
 }

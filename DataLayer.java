@@ -3,9 +3,9 @@ import java.util.LinkedList;
 import java.util.UUID;
 
 public class DataLayer {
-    private HashMap<UUID,Application> applications;
-    private LinkedList<String> emails;
-    private HashMap<String,NonImmigrantWorker> immigrantRegistry;
+    private HashMap<UUID,Application> applications;             //hashmap of applications
+    private LinkedList<String> emails;                          //list of emails to be sent
+    private HashMap<UUID,NonImmigrantWorker> immigrantRegistry; //registry of nonimmigrant applicants already applied
 
     public DataLayer(){
         this.applications = new HashMap<>();
@@ -13,6 +13,7 @@ public class DataLayer {
         this.immigrantRegistry = new HashMap<>();
     }
     
+    //getters and setters
     public HashMap<UUID, Application> getApplications() {
         return applications;
     }
@@ -25,23 +26,31 @@ public class DataLayer {
     public void setEmails(LinkedList<String> emails) {
         this.emails = emails;
     }
-    public HashMap<String, NonImmigrantWorker> getImmigrantRegistry() {
+    public HashMap<UUID, NonImmigrantWorker> getImmigrantRegistry() {
         return immigrantRegistry;
     }
-    public void setImmigrantRegistry(HashMap<String, NonImmigrantWorker> immigrantRegistry) {
+    public void setImmigrantRegistry(HashMap<UUID, NonImmigrantWorker> immigrantRegistry) {
         this.immigrantRegistry = immigrantRegistry;
     }
 
+    //end getters and setters
+
+    //retrieve application from id passed in
     public Application retrieveApplication(UUID id){
-        return null;
+        return applications.get(id);
     }
 
+    //return email message associated with application id
     public String sendEmail(UUID id){
-        return null;
+        return applications.get(id).getEmailMessage();
     }
 
+    //add application to map
     public boolean addApplication(Application application){
-        
+        if(application!=null){
+            applications.put(application.getUUID(), application);
+            return true;
+        }
         return false;
     }
 

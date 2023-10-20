@@ -4,6 +4,7 @@ public class NonImmigrantWorker {
     private String dob;
     private String aNumber;
 
+    //getters and setters
     public void setDob(String dob) {
         this.dob = dob;
     }
