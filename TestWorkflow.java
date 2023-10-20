@@ -7,11 +7,21 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.UUID;
 
+
 public class TestWorkflow {
-    public void testGetSetGetApprovalQueue() {
+    @Test
+    public void testGetSetApprovalQueue() {
         Workflow wf = new Workflow();
-        LinkedList<UUID> ap = new LinkedList<>(null)
+        LinkedList<UUID> ap = new LinkedList<>(null);
         wf.setApprovalQueue(ap);
-        asserThat(wf.getApprovalQueue(), is(ap))
+        asserThat(wf.getApprovalQueue(), is(ap));
     }
+    @Test
+    public void testGetSetReviewQueue() {
+        Workflow wf = new Workflow();
+        LinkedList<UUID> rq = new LinkedList<>(null);
+        wf.setReviewQueue(rq);
+        assertThat(wf.getReviewQueue(), is(rq));
+    }
+    
 }
