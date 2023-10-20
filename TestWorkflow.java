@@ -14,7 +14,7 @@ public class TestWorkflow {
         Workflow wf = new Workflow();
         LinkedList<UUID> ap = new LinkedList<>(null);
         wf.setApprovalQueue(ap);
-        asserThat(wf.getApprovalQueue(), is(ap));
+        assertThat(wf.getApprovalQueue(), is(ap));
     }
     @Test
     public void testGetSetReviewQueue() {
