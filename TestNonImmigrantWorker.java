@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class TestNonImmigrantWorker {
     @Test
-    public void testIgetFirstName (){
+    public void testGetSetgetFirstName (){
         NonImmigrantWorker worker = new NonImmigrantWorker();
         String name = "testName";
         worker.setFirstName(name);
