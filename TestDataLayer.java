@@ -25,7 +25,7 @@ public class TestDataLayer {
 
     public void testGetSetImmigrants(){
         DataLayer dataLayer = new DataLayer();
-        HashMap<UUID,NonImmigrantWorker> immigrants = new HashMap<>();
+        HashMap<String,NonImmigrantWorker> immigrants = new HashMap<>();
         dataLayer.setImmigrantRegistry(immigrants);
         assertThat(dataLayer.getImmigrantRegistry(), is(immigrants));
     }
