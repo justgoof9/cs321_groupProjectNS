@@ -5,7 +5,7 @@ import java.util.UUID;
 public class DataLayer {
     private HashMap<UUID,Application> applications;             //hashmap of applications
     private LinkedList<String> emails;                          //list of emails to be sent
-    private HashMap<UUID,NonImmigrantWorker> immigrantRegistry; //registry of nonimmigrant applicants already applied
+    private HashMap<String,NonImmigrantWorker> immigrantRegistry; //registry of nonimmigrant applicants already applied
 
     public DataLayer(){
         this.applications = new HashMap<>();
@@ -26,10 +26,10 @@ public class DataLayer {
     public void setEmails(LinkedList<String> emails) {
         this.emails = emails;
     }
-    public HashMap<UUID, NonImmigrantWorker> getImmigrantRegistry() {
+    public HashMap<String, NonImmigrantWorker> getImmigrantRegistry() {
         return immigrantRegistry;
     }
-    public void setImmigrantRegistry(HashMap<UUID, NonImmigrantWorker> immigrantRegistry) {
+    public void setImmigrantRegistry(HashMap<String, NonImmigrantWorker> immigrantRegistry) {
         this.immigrantRegistry = immigrantRegistry;
     }
 
@@ -53,8 +53,6 @@ public class DataLayer {
         }
         return false;
     }
-
-
 
 }
 
