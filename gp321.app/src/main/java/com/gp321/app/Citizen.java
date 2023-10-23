@@ -1,3 +1,5 @@
+package com.gp321.app;
+
 public class Citizen {
     private String firstName;
     private String lastName;

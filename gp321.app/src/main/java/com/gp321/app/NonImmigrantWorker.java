@@ -1,17 +1,14 @@
-public class Citizen {
+package com.gp321.app;
+
+public class NonImmigrantWorker {
     private String firstName;
     private String lastName;
     private String dob;
-    private String ssn;
-    private String email;
+    private String aNumber;
 
     //getters and setters
     public void setDob(String dob) {
         this.dob = dob;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public void setFirstName(String firstName) {
@@ -22,18 +19,14 @@ public class Citizen {
         this.lastName = lastName;
     }
 
-    public void setSsn(String ssn) {
-        this.ssn = ssn;
+    public void setANumber(String aNumber) {
+        this.aNumber = aNumber;
     }
 
     public String getDob() {
         return dob;
     }
     
-    public String getEmail() {
-        return email;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -42,7 +35,9 @@ public class Citizen {
         return lastName;
     }
 
-    public String getSsn() {
-        return ssn;
+    public String getANumber() {
+        return aNumber;
     }
+
 }
+

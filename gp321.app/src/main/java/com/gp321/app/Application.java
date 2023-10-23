@@ -1,3 +1,5 @@
+package com.gp321.app;
+
 import java.util.UUID;
 
 public class Application{
