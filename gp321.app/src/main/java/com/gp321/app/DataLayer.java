@@ -26,7 +26,7 @@ public class DataLayer {
         Citizen citizen = new Citizen();
         NonImmigrantWorker nonImmigrantWorker = new NonImmigrantWorker();
         try{
-            file = new File("../resources/datalayer.csv");
+            file = new File("dataLayer.csv");
             scanner = new Scanner(file);
 
             while(scanner.hasNextLine()){
@@ -45,6 +45,7 @@ public class DataLayer {
                 application.setCitizenApplicant(citizen);
                 application.setAlienApplicant(nonImmigrantWorker);
                 applications.put(application.getUUID(),application);
+                immigrantRegistry.put(nonImmigrantWorker.getANumber(),nonImmigrantWorker);
             }
             scanner.close();
         }
@@ -92,6 +93,41 @@ public class DataLayer {
             return true;
         }
         return false;
+    }
+
+    public boolean immigrantExists(String aNumber){
+        return immigrantRegistry.containsKey(aNumber);
+    }
+
+    public void writeOut(){
+        try{
+            File file = new File("dataLayer.csv");
+            ArrayList<String> applicationToWrite;
+            ArrayList<String> fullList = new ArrayList<>();
+            Application current;
+            FileWriter fileWriter = new FileWriter(file,false);
+            for(UUID uuid: applications.keySet()){
+                applicationToWrite = new ArrayList<>();
+                current = applications.get(uuid);
+                applicationToWrite.add(current.getUUID().toString());
+                applicationToWrite.add(String.valueOf(current.getEmail()));
+                applicationToWrite.add(current.getCitizenApplicant().getFirstName());
+                applicationToWrite.add(current.getCitizenApplicant().getLastName());
+                applicationToWrite.add(current.getCitizenApplicant().getDob());
+                applicationToWrite.add(current.getCitizenApplicant().getSsn());
+                applicationToWrite.add(current.getCitizenApplicant().getEmail());
+                applicationToWrite.add(current.getAlienApplicant().getFirstName());
+                applicationToWrite.add(current.getAlienApplicant().getLastName());
+                applicationToWrite.add(current.getAlienApplicant().getDob());
+                applicationToWrite.add(current.getAlienApplicant().getANumber());
+                fullList.add(String.join(",", applicationToWrite));
+            }
+            fileWriter.write(String.join("\n",fullList));
+            fileWriter.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

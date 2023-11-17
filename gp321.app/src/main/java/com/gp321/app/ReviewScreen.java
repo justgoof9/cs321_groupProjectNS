@@ -8,10 +8,10 @@ import java.awt.event.ActionListener;
 public class ReviewScreen extends JFrame {
     DataLayer dataLayer;
     Workflow workflow;
+    Application application;
     public ReviewScreen() {
         dataLayer = new DataLayer();
         workflow = new Workflow();
-
         //set properties
         setTitle("USCIS Immigration Approval");
         setSize(800, 600);
@@ -86,7 +86,7 @@ public class ReviewScreen extends JFrame {
         getNextReview.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Application application = dataLayer.retrieveApplication(workflow.retrieveReview());
+                application = dataLayer.retrieveApplication(workflow.retrieveReview());
                 Citizen citizen = application.getCitizenApplicant();
                 NonImmigrantWorker nonImmigrantWorker = application.getAlienApplicant();
                 nameValue.setText(citizen.getFirstName()+' '+citizen.getLastName());
@@ -103,29 +103,41 @@ public class ReviewScreen extends JFrame {
         performValidation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(ReviewScreen.this, "Application Reviewed");
+                if(!dataLayer.immigrantExists(aNumValue.getText())){
+                    JOptionPane.showMessageDialog(ReviewScreen.this, "Application Validation Failed aNum Exists");
+                }
+                else{
+                    JOptionPane.showMessageDialog(ReviewScreen.this, "Application Reviewed");
+                }
             }
         });
 
         reviewed.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(ReviewScreen.this, "Sending Email");
+                workflow.addApproval(application.getUUID());
+                workflow.writeOut();
+                dataLayer.writeOut();
+                JOptionPane.showMessageDialog(ReviewScreen.this, "Added to Approval");
             }
         });
 
         sendEmailButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){}
+            public void actionPerformed(ActionEvent e){
+                JOptionPane.showMessageDialog(ReviewScreen.this, "Added to Approval");
+            }
+            
         });
 
         //create panel
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 2, 10, 10));
-        buttonPanel.add(approveButton);
-        buttonPanel.add(getNextReviewButton);
+        buttonPanel.add(getNextReview);
+        buttonPanel.add(performValidation);
+        buttonPanel.add(reviewed);
         buttonPanel.add(sendEmailButton);
-
+        
         //create container for info and buttons
         JPanel containerPanel = new JPanel();
         containerPanel.setLayout(new BorderLayout());
