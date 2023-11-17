@@ -7,7 +7,11 @@ import java.awt.event.ActionListener;
 
 public class ReviewScreen extends JFrame {
     DataLayer dataLayer;
+    Workflow workflow;
     public ReviewScreen() {
+        dataLayer = new DataLayer();
+        workflow = new Workflow();
+
         //set properties
         setTitle("USCIS Immigration Approval");
         setSize(800, 600);
@@ -36,7 +40,7 @@ public class ReviewScreen extends JFrame {
         JLabel emailLabel = new JLabel("Email:");
         JTextArea emailValue = new JTextArea();
 
-        JLabel immigranLabel = new JLabel("NonImmigrant Info");
+        JLabel immigrantLabel = new JLabel("NonImmigrant Info");
 
         JLabel immNameLabel = new JLabel("Full Name:");
         JTextArea immNameValue = new JTextArea();
@@ -60,7 +64,7 @@ public class ReviewScreen extends JFrame {
         infoPanel.add(ssnValue);
         infoPanel.add(emailLabel);
         infoPanel.add(emailValue);
-        infoPanel.add(immigranLabel);
+        infoPanel.add(immigrantLabel);
         infoPanel.add(new JLabel()); //spacing
         infoPanel.add(immNameLabel);
         infoPanel.add(immNameValue);
@@ -70,32 +74,49 @@ public class ReviewScreen extends JFrame {
         infoPanel.add(aNumValue);
 
         //add buttons
-        JButton approveButton = new JButton("Get Next Review");
+        JButton getNextReview = new JButton("Get Next Review");
 
-        JButton getNextReviewButton = new JButton("Reviewed");
+        JButton performValidation = new JButton("Perform Validation");
+
+        JButton reviewed = new JButton("Reviewed");
 
         JButton sendEmailButton = new JButton("Send Email");
 
         //event handling
-        approveButton.addActionListener(new ActionListener() {
+        getNextReview.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(ReviewScreen.this, "Getting Next Review");
+                Application application = dataLayer.retrieveApplication(workflow.retrieveReview());
+                Citizen citizen = application.getCitizenApplicant();
+                NonImmigrantWorker nonImmigrantWorker = application.getAlienApplicant();
+                nameValue.setText(citizen.getFirstName()+' '+citizen.getLastName());
+                dobValue.setText(citizen.getDob());
+                ssnValue.setText(citizen.getSsn());
+                emailValue.setText(citizen.getEmail());
+                immNameValue.setText(nonImmigrantWorker.getFirstName()+' '+nonImmigrantWorker.getLastName());
+                immDobValue.setText(nonImmigrantWorker.getDob());
+                aNumValue.setText(nonImmigrantWorker.getANumber());
+
             }
         });
 
-        getNextReviewButton.addActionListener(new ActionListener() {
+        performValidation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(ReviewScreen.this, "Application Reviewed");
             }
         });
 
-        sendEmailButton.addActionListener(new ActionListener() {
+        reviewed.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(ReviewScreen.this, "Sending Email");
             }
+        });
+
+        sendEmailButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){}
         });
 
         //create panel
