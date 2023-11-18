@@ -2,69 +2,72 @@ package com.gp321.app;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.UUID; // Import UUID class here
-
+import java.util.UUID;
 
 public class ApprovalScreen extends JFrame {
     DataLayer dataLayer;
 
     public ApprovalScreen() {
-
-        //initalizing dataLayer.
         dataLayer = new DataLayer();
-        // Setting the title of the JFrame
+
         setTitle("USCIS Immigration Approval");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Setting the layout
-        setLayout(new BorderLayout()); // Use BorderLayout
+        JPanel infoPanel = new JPanel(new GridLayout(12, 2, 10, 10));
+        infoPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Creating the title label
-        JLabel titleLabel = new JLabel("USCIS Immigration Review", SwingConstants.CENTER);
+        JLabel titleLabel = new JLabel("USCIS Immigration Approval", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
 
-        // Adding the title label to the top
-        add(titleLabel, BorderLayout.NORTH);
+        // Labels for sections
+        JLabel citizenLabel = new JLabel("Citizen Info:");
+        JLabel nonImmigrantLabel = new JLabel("Nonimmigrant Info:");
 
-        // Creating a panel with GridLayout for the other labels
-        JPanel gridPanel = new JPanel(new GridLayout(10, 2)); // 10 rows, 2 columns
+        // Create JTextAreas for display
+        JTextArea citizenNameValue = createNonEditableTextArea();
+        JTextArea citizenDobValue = createNonEditableTextArea();
+        JTextArea citizenSsnValue = createNonEditableTextArea();
+        JTextArea citizenEmailValue = createNonEditableTextArea();
 
-              // Assuming you want to display the first application's data
-            //   UUID firstKey = dataLayer.getApplications().keySet().iterator().next();
-            //   Application firstApplication = dataLayer.getApplications().get(firstKey);
-      
-            //   // Check if there is an application available
-            //   if (firstApplication != null) {
-            //       Citizen citizen = firstApplication.getCitizenApplicant();
-            //       NonImmigrantWorker nonImmigrant = firstApplication.getAlienApplicant();
-      
-            //       // Adding labels and corresponding data for citizen
-            //       addLabelAndData(gridPanel, "Citizen First Name:", citizen.getFirstName());
-            //       addLabelAndData(gridPanel, "Citizen Date of Birth:", citizen.getDob());
-            //       addLabelAndData(gridPanel, "Citizen SSN:", citizen.getSsn());
-            //       addLabelAndData(gridPanel, "Citizen Email:", citizen.getEmail());
-      
-            //       // Adding labels and corresponding data for non-immigrant worker
-            //       addLabelAndData(gridPanel, "Nonimmigrant First Name:", nonImmigrant.getFirstName());
-            //       addLabelAndData(gridPanel, "Nonimmigrant Date of Birth:", nonImmigrant.getDob());
-            //       addLabelAndData(gridPanel, "Nonimmigrant Alien Number:", nonImmigrant.getANumber());
-            //   }
+        JTextArea nonImmigrantNameValue = createNonEditableTextArea();
+        JTextArea nonImmigrantDobValue = createNonEditableTextArea();
+        JTextArea nonImmigrantANumberValue = createNonEditableTextArea();
 
-        // Adding the grid panel to the center
-        add(gridPanel, BorderLayout.CENTER);
+        // Adding components to the panel
+        infoPanel.add(titleLabel);
+        infoPanel.add(new JLabel()); // Empty label for spacing
+        infoPanel.add(citizenLabel);
+        infoPanel.add(new JLabel()); // Empty label for spacing
+        addField(infoPanel, "Full Name:", citizenNameValue);
+        addField(infoPanel, "Date of Birth:", citizenDobValue);
+        addField(infoPanel, "SSN:", citizenSsnValue);
+        addField(infoPanel, "Email:", citizenEmailValue);
+        infoPanel.add(nonImmigrantLabel);
+        infoPanel.add(new JLabel()); // Empty label for spacing
+        addField(infoPanel, "Full Name:", nonImmigrantNameValue);
+        addField(infoPanel, "Date of Birth:", nonImmigrantDobValue);
+        addField(infoPanel, "Alien Number:", nonImmigrantANumberValue);
 
-        // Set default close operation and window size
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 400);
+        add(infoPanel);
+        setLocationRelativeTo(null);
     }
-    // public void addLabelAndData(JPanel panel, String labelText, String dataText) {
-    //     panel.add(new JLabel(labelText));
-    //     panel.add(new JLabel(dataText));
-    // }
+
+    private void addField(JPanel panel, String labelText, JTextArea textArea) {
+        panel.add(new JLabel(labelText));
+        panel.add(textArea);
+    }
+
+    private JTextArea createNonEditableTextArea() {
+        JTextArea textArea = new JTextArea();
+        textArea.setEditable(false);
+        return textArea;
+    }
 
     public static void main(String[] args) {
-        // Running the form
         SwingUtilities.invokeLater(() -> {
-            new ApprovalScreen().setVisible(true);
+            ApprovalScreen frame = new ApprovalScreen();
+            frame.setVisible(true);
         });
     }
 }

@@ -1,4 +1,4 @@
-
+package com.gp321.app;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -74,6 +74,6 @@ public class CitizenApplication extends JFrame {
                 new CitizenApplication().setVisible(true);
             }
         });
-package com.gp321.app;
+
     }
 }
