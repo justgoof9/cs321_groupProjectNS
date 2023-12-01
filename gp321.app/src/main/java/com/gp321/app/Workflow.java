@@ -8,25 +8,30 @@ public class Workflow {
     LinkedList<UUID> approvalQueue; //queue of ids to approve
 
     public Workflow(){
+        //read queues from file
         try{
             
             File file = new File("workflow.csv");
             reviewQueue = new LinkedList<>();
             approvalQueue = new LinkedList<>();
             Scanner scanner = new Scanner(file);
-            String review =  scanner.nextLine();
-            if(review!= null){
-                for(String string: review.split(",")){
-                    if(string!=null){
-                        reviewQueue.add(UUID.fromString(string));
+            String nextLine =  scanner.nextLine();
+            if(nextLine!=null){
+                if(nextLine.split(",")[0].equals("review")){
+                    for(String string: nextLine.split(",")){
+                        if(!string.equals("review")){
+                            reviewQueue.add(UUID.fromString(string));
+                        }
                     }
+                    nextLine = scanner.nextLine();
                 }
             }
-            String approve = scanner.nextLine();
-            if(approve!=null){
-                for(String string: approve.split(",")){
-                    if(string != null){
-                        approvalQueue.add(UUID.fromString(string));
+            if(nextLine!=null){
+                if(nextLine.split(",")[0].equals("approval")){
+                    for(String string: nextLine.split(",")){
+                        if(!string.equals("approval")){
+                            approvalQueue.add(UUID.fromString(string));
+                        }
                     }
                 }
             }
@@ -72,6 +77,7 @@ public class Workflow {
     }
 
     public void writeOut(){
+        //write queues from file
         try{
             File file = new File("workflow.csv");
             ArrayList<String> applicationToWrite;
@@ -81,7 +87,8 @@ public class Workflow {
             ArrayList<String> stringReview = new ArrayList<>();
             ArrayList<String> stringApprove = new ArrayList<>();
             ArrayList<String> fullString = new ArrayList<>();
-
+            stringReview.add("review");
+            stringApprove.add("approval");
             for(UUID uuid: reviewQueue){
                 stringReview.add(uuid.toString());
 

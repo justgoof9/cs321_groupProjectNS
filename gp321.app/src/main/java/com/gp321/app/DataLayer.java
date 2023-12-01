@@ -25,6 +25,7 @@ public class DataLayer {
         Application application = new Application();
         Citizen citizen = new Citizen();
         NonImmigrantWorker nonImmigrantWorker = new NonImmigrantWorker();
+        //read applications from file
         try{
             file = new File("dataLayer.csv");
             scanner = new Scanner(file);
@@ -95,10 +96,12 @@ public class DataLayer {
         return false;
     }
 
+    //check if immigrant is already added
     public boolean immigrantExists(String aNumber){
         return immigrantRegistry.containsKey(aNumber);
     }
 
+    //write application to file
     public void writeOut(){
         try{
             File file = new File("dataLayer.csv");
