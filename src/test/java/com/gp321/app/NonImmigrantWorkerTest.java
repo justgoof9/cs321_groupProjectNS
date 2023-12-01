@@ -9,7 +9,7 @@ import org.junit.Test;
 /**
  * Test class for verifying the functionality of the NonImmigrantWorker class methods.
  */
-public class TestNonImmigrantWorker {
+public class NonImmigrantWorkerTest {
 
     /**
      * Test to verify that the setFirstName() and getFirstName() methods

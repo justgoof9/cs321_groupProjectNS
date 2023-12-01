@@ -6,7 +6,7 @@ import static org.hamcrest.MatcherAssert.*;
 import java.util.*;
 import org.junit.Test;
 
-public class TestApplication {
+public class ApplicationTest {
     @Test
     public void testGetSetAlienApplicant(){
         Application application = new Application();
