@@ -166,7 +166,7 @@ public class CombinedApplication extends JFrame {
     
     System.out.println("Application created with Citizen and Non-Immigrant Worker data.");
 }
-
+    
     /**
      * The main entry point for the CombinedApplication. This method initializes
      * and displays the GUI.
