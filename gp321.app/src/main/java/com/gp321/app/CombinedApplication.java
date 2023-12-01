@@ -160,6 +160,7 @@ public class CombinedApplication extends JFrame {
 
     dataLayer.addApplication(application);
     dataLayer.writeOut();
+    workFlow.writeOut();
 
    
     
