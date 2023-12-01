@@ -5,7 +5,7 @@ import static org.hamcrest.MatcherAssert.*;
 
 import org.junit.Test;
 
-public class TestCitizen {
+public class CitizenTest {
     //test Citizen class
     @Test
     public void testGetSetFirstName(){

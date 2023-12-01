@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.UUID;
 
 
-public class TestWorkflow {
+public class WorkflowTest {
     /**
      * Test the setting and retreival of the approval queue in the Workflow class.
      */

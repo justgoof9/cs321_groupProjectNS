@@ -8,7 +8,7 @@ import java.util.HashMap;
 import org.junit.Test;
 import java.util.*;
 
-public class TestDataLayer {
+public class DataLayerTest {
 
     @Test
     public void testGetSetApplications(){
