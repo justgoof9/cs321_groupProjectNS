@@ -15,22 +15,24 @@ public class Workflow {
             reviewQueue = new LinkedList<>();
             approvalQueue = new LinkedList<>();
             Scanner scanner = new Scanner(file);
-            String nextLine =  scanner.nextLine();
-            if(nextLine!=null){
-                if(nextLine.split(",")[0].equals("review")){
-                    for(String string: nextLine.split(",")){
-                        if(!string.equals("review")){
-                            reviewQueue.add(UUID.fromString(string));
+            if(scanner.hasNextLine()){
+                String nextLine =  scanner.nextLine();
+                if(nextLine!=null){
+                    if(nextLine.split(",")[0].equals("review")){
+                        for(String string: nextLine.split(",")){
+                            if(!string.equals("review")){
+                                reviewQueue.add(UUID.fromString(string));
+                            }
                         }
+                        nextLine = scanner.nextLine();
                     }
-                    nextLine = scanner.nextLine();
                 }
-            }
-            if(nextLine!=null){
-                if(nextLine.split(",")[0].equals("approval")){
-                    for(String string: nextLine.split(",")){
-                        if(!string.equals("approval")){
-                            approvalQueue.add(UUID.fromString(string));
+                if(nextLine!=null){
+                    if(nextLine.split(",")[0].equals("approval")){
+                        for(String string: nextLine.split(",")){
+                            if(!string.equals("approval")){
+                                approvalQueue.add(UUID.fromString(string));
+                            }
                         }
                     }
                 }
@@ -94,7 +96,7 @@ public class Workflow {
 
             }
             for(UUID uuid: approvalQueue){
-                stringReview.add(uuid.toString());
+                stringApprove.add(uuid.toString());
             }
 
             fullString.add(String.join(",",stringReview));
