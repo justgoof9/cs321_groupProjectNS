@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.gp321.app.WorkflowTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in com.gp321.app.WorkflowTest
+Tests run: 5, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.022 s <<< FAILURE! - in com.gp321.app.WorkflowTest
+testConstructor(com.gp321.app.WorkflowTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "java.util.UUID.toString()" because the return value of "com.gp321.app.Workflow.retrieveReview()" is null
+	at com.gp321.app.WorkflowTest.testConstructor(WorkflowTest.java:79)
+

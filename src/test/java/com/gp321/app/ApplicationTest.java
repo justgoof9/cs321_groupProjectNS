@@ -3,6 +3,7 @@ package com.gp321.app;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
+import java.beans.Transient;
 import java.util.*;
 import org.junit.Test;
 
@@ -15,6 +16,7 @@ public class ApplicationTest {
         assertThat(application.getAlienApplicant(), is(nonImmigrantWorker));
     }
 
+    @Test
     public void testGetSetCitizenApplicant(){
         Application application = new Application();
         Citizen citizen = new Citizen();
@@ -28,18 +30,22 @@ public class ApplicationTest {
         app.setUuid(id);
         assertThat(app.getUUID(), is(id));
     }
+
+    @Test
     public void testGetSetEmailFalse(){
         Application application = new Application();
         application.setEmail(false);
         assertThat(application.getEmail(), is(false));
     }
 
+    @Test
     public void testGetSetEmailTrue(){
         Application application = new Application();
         application.setEmail(true);
         assertThat(application.getEmail(), is(true));
     }
 
+    @Test
     public void testToEmailTrue(){
         Application application = new Application();
         application.setEmail(true);
@@ -47,6 +53,7 @@ public class ApplicationTest {
         assertThat(application.getEmail(), is(true));
     }
 
+    @Test
     public void testToEmailFalse(){
         Application application = new Application();
         application.setEmail(false);
@@ -54,6 +61,7 @@ public class ApplicationTest {
         assertThat(application.getEmail(), is(true));
     }
 
+    @Test
     public void testGetSetEmailMessage(){
         Application application = new Application();
         String email = "Test Email";

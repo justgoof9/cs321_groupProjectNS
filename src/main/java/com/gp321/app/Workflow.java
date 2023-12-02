@@ -7,11 +7,16 @@ public class Workflow {
     LinkedList<UUID> reviewQueue;   //queue of ids to review
     LinkedList<UUID> approvalQueue; //queue of ids to approve
 
-    public Workflow(){
+    String path = "workflow.csv";
+
+    public Workflow(String path){
         //read queues from file
+        if(path==null){
+            path=this.path;
+        }
         try{
-            
-            File file = new File("workflow.csv");
+
+            File file = new File(path);
             reviewQueue = new LinkedList<>();
             approvalQueue = new LinkedList<>();
             Scanner scanner = new Scanner(file);
@@ -42,7 +47,7 @@ public class Workflow {
             e.printStackTrace();
         }
     }
-    
+
     //getters and setters
     public LinkedList<UUID> getApprovalQueue() {
         return approvalQueue;
@@ -78,10 +83,13 @@ public class Workflow {
         return reviewQueue.poll();
     }
     //test change
-    public void writeOut(){
+    public void writeOut(String path){
         //write queues from file
+        if(path==null){
+            path = this.path;
+        }
         try{
-            File file = new File("workflow.csv");
+            File file = new File(path);
             ArrayList<String> applicationToWrite;
             ArrayList<String> fullList = new ArrayList<>();
             Application current;

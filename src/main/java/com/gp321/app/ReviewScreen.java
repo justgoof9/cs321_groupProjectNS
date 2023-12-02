@@ -10,8 +10,8 @@ public class ReviewScreen extends JFrame {
     Workflow workflow;
     Application application;
     public ReviewScreen() {
-        dataLayer = new DataLayer();
-        workflow = new Workflow();
+        dataLayer = new DataLayer(null);
+        workflow = new Workflow(null);
         //set properties
         setTitle("USCIS Immigration Approval");
         setSize(800, 600);
@@ -116,8 +116,8 @@ public class ReviewScreen extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 workflow.addApproval(application.getUUID());
-                workflow.writeOut();
-                dataLayer.writeOut();
+                workflow.writeOut(null);
+                dataLayer.writeOut(null);
                 JOptionPane.showMessageDialog(ReviewScreen.this, "Added to Approval");
             }
         });

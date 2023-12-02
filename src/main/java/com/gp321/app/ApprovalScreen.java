@@ -7,14 +7,14 @@ import java.util.UUID;
 
 public class ApprovalScreen extends JFrame {
     DataLayer dataLayer;
-    Iterator<UUID> applicationIterator;
+    Workflow workflow;
 
     JTextArea citizenNameValue, citizenDobValue, citizenSsnValue, citizenEmailValue;
     JTextArea nonImmigrantNameValue, nonImmigrantDobValue, nonImmigrantANumberValue;
 
     public ApprovalScreen() {
-        dataLayer = new DataLayer();
-        applicationIterator = dataLayer.getApplications().keySet().iterator();
+        dataLayer = new DataLayer(null);
+        workflow = new Workflow(null);
 
         setTitle("USCIS Immigration Approval");
         setSize(800, 600);
@@ -48,7 +48,7 @@ public class ApprovalScreen extends JFrame {
         // Non-Immigrant Worker Information
         JLabel nonImmigrantLabel = new JLabel("Nonimmigrant Info:");
         infoPanel.add(nonImmigrantLabel);
-        infoPanel.add(new JLabel()); 
+        infoPanel.add(new JLabel());
 
         nonImmigrantNameValue = createNonEditableTextArea();
         addField(infoPanel, "Full Name:", nonImmigrantNameValue);
@@ -88,13 +88,15 @@ public class ApprovalScreen extends JFrame {
     }
 
     private void loadNextApplication() {
-        if (applicationIterator.hasNext()) {
-            UUID nextKey = applicationIterator.next();
-            Application application = dataLayer.getApplications().get(nextKey);
+        UUID id = workflow.retrieveApproval();
+        if (id!=null) {
+            Application application = dataLayer.retrieveApplication(id);
             updateApplicationData(application);
         } else {
             JOptionPane.showMessageDialog(this, "No more applications available.");
         }
+        workflow.writeOut(null);
+        dataLayer.writeOut(null);
     }
 
     private void updateApplicationData(Application application) {
