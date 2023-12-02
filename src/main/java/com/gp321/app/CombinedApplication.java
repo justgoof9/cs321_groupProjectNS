@@ -31,8 +31,8 @@ public class CombinedApplication extends JFrame {
      * and sets up the user interface.
      */
     public CombinedApplication() {
-        dataLayer = new DataLayer();
-        workFlow = new Workflow();
+        dataLayer = new DataLayer(null);
+        workFlow = new Workflow(null);
         createUI();
     }
 
@@ -159,8 +159,8 @@ public class CombinedApplication extends JFrame {
     workFlow.addReview(application.getUUID());
 
     dataLayer.addApplication(application);
-    dataLayer.writeOut();
-    workFlow.writeOut();
+    dataLayer.writeOut(null);
+    workFlow.writeOut(null);
 
    
     

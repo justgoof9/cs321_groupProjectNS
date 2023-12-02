@@ -10,14 +10,17 @@ public class DataLayer {
     private HashMap<UUID,Application> applications;             //hashmap of applications
     private LinkedList<String> emails;                          //list of emails to be sent
     private HashMap<String,NonImmigrantWorker> immigrantRegistry; //registry of nonimmigrant applicants already applied
-
-    public DataLayer(){
+    private String path = "dataLayer.csv";
+    public DataLayer(String path){
+        if(path==null){
+            path = this.path;
+        }
         this.applications = new HashMap<>();
         this.emails = new LinkedList<>();
         this.immigrantRegistry = new HashMap<>();
-        setValues();
+        setValues(path);
     }
-    private void setValues(){
+    private void setValues(String path){
         File file;
         Scanner scanner;
         String next;
@@ -27,7 +30,7 @@ public class DataLayer {
         NonImmigrantWorker nonImmigrantWorker = new NonImmigrantWorker();
         //read applications from file
         try{
-            file = new File("dataLayer.csv");
+            file = new File(path);
             scanner = new Scanner(file);
 
             while(scanner.hasNextLine()){
@@ -102,9 +105,12 @@ public class DataLayer {
     }
 
     //write application to file
-    public void writeOut(){
+    public void writeOut(String path){
+        if(path == null){
+            path = this.path;
+        }
         try{
-            File file = new File("dataLayer.csv");
+            File file = new File(path);
             ArrayList<String> applicationToWrite;
             ArrayList<String> fullList = new ArrayList<>();
             Application current;
