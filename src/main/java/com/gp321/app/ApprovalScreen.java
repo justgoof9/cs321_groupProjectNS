@@ -95,6 +95,8 @@ public class ApprovalScreen extends JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "No more applications available.");
         }
+        workflow.writeOut(null);
+        dataLayer.writeOut(null);
     }
 
     private void updateApplicationData(Application application) {

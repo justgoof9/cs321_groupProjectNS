@@ -139,16 +139,45 @@ public class CombinedApplication extends JFrame {
     Citizen citizen = new Citizen();
     citizen.setFirstName(firstNameFieldCitizen.getText());
     citizen.setLastName(lastNameFieldCitizen.getText());
+    if(dobFieldCitizen.getText().length()<10 || 
+    dobFieldCitizen.getText().toCharArray()[4]!='-'|| 
+    dobFieldCitizen.getText().toCharArray()[7]!='-' ||
+    (dobFieldCitizen.getText().charAt(5)-'0')*10+(dobFieldCitizen.getText().toCharArray()[6]-'0')>12 ||
+    (dobFieldCitizen.getText().charAt(5)-'0')*10+(dobFieldCitizen.getText().toCharArray()[6]-'0')<=0 ||
+    (dobFieldCitizen.getText().charAt(8)-'0')*10+(dobFieldCitizen.getText().toCharArray()[9]-'0')>31 ||
+    (dobFieldCitizen.getText().charAt(8)-'0')*10+(dobFieldCitizen.getText().toCharArray()[9]-'0')<=0){
+        JOptionPane.showMessageDialog(this, "Invalid Field");
+        return;
+    }
     citizen.setDob(dobFieldCitizen.getText());
+    if(ssnField.getText().length()<9){
+        JOptionPane.showMessageDialog(this, "Invalid Field");
+    }
     citizen.setSsn(ssnField.getText());
+
     citizen.setEmail(emailField.getText());
 
     // Creating NonImmigrantWorker object
     NonImmigrantWorker worker = new NonImmigrantWorker();
     worker.setFirstName(firstNameFieldWorker.getText());
     worker.setLastName(lastNameFieldWorker.getText());
+    StringBuilder stb = new StringBuilder();
+    if(dobFieldWorker.getText().length()<10 || 
+    dobFieldWorker.getText().toCharArray()[4]!='-'|| 
+    dobFieldWorker.getText().toCharArray()[7]!='-' ||
+    (dobFieldWorker.getText().charAt(5)-'0')*10+(dobFieldWorker.getText().toCharArray()[6]-'0')>12 ||
+    (dobFieldWorker.getText().charAt(5)-'0')*10+(dobFieldWorker.getText().toCharArray()[6]-'0')<=0 ||
+    (dobFieldWorker.getText().charAt(8)-'0')*10+(dobFieldWorker.getText().toCharArray()[9]-'0')>31 ||
+    (dobFieldWorker.getText().charAt(8)-'0')*10+(dobFieldWorker.getText().toCharArray()[9]-'0')<=0){
+        JOptionPane.showMessageDialog(this, "Invalid Field");
+        return;
+    }
     worker.setDob(dobFieldWorker.getText());
+    if(aNumberField.getText().length()<9){
+        JOptionPane.showMessageDialog(this, "Invalid Field");
+    }
     worker.setANumber(aNumberField.getText());
+    
 
     // Creating Application object
     Application application = new Application();
